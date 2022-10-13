@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_admin_page_delete', {'id': page.id}) }}" onsubmit="return confirm('Veuillez vérifier qu\'il n\'y est aucun contenu sur cette page avant la suppression !');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ page.id) }}">
+    <button class="btn btn-danger mb-5">Supprimer la page</button>
+</form>

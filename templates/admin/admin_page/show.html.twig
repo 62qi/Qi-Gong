@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-5">Page</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Titre</th>
+                <td>{{ page.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ page.description }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ page.slug }}</td>
+            </tr>
+            <tr>
+                <th>Titre de la page</th>
+                <td>{{ page.titleH1 }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ page.type }}</td>
+            </tr>
+            <tr>
+                <th>Emplacement page</th>
+                <td>{{ page.template }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success p-2 mb-2" href="{{ path('app_admin_page_index') }}">Retour à la liste</a>
+
+    <a class="btn btn-warning p-2 mb-2" href="{{ path('app_admin_page_edit', {'id': page.id}) }}">Modifier</a>
+
+    {{ include('admin/admin_page/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ page.title }}
+{% endblock %}
+{% block description %}
+	{{ page.description }}
+{% endblock %}
+{% block body %}
+<div class="container-fluid" id ="home-page" style="background-color:{{ page.color }}10">
+	<section id="desc-home">
+		{{render(controller('App\\Controller\\ContentController::getContentsByHook', {hookName: 'accueil-presentation'}))}}
+	</section>
+	<section id="service-home" class="mt-5">
+		{{render(controller('App\\Controller\\ContentController::getContentsByHook', {hookName: 'accueil-services'}))}}
+	</section>
+	<div class="container p-5">
+		<div class="row">
+			<div class="col-lg-6">
+				<h1 class="text-primary mt-4 mb-4 text-center">Dernières Actualités</h1>
+				<section id="news-home">
+					{{render(controller('App\\Controller\\ContentController::getContentsByHook', {hookName: 'accueil-actus'}))}}
+				</section>
+			</div>
+			<div class="col-lg-1">
+			</div>
+			<div class="col-lg-5">
+				<h1 class="text-primary mt-4 mb-4 text-center">Me Contacter</h1>
+				{{ render(controller('App\\Controller\\ContactController::contactView')) }}
+			</div>
+		<div>
+	</div>
+</div>
+{% endblock %}

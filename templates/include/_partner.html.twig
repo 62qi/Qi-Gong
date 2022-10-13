@@ -1,0 +1,3 @@
+<section id="partner" class="footer mt-auto p-1 text-white text-center" style="background:{{ page.color }}">
+    {{render(controller('App\\Controller\\ContentController::getContentsByHook', {hookName: 'accueil-partner'}))}}
+</section>

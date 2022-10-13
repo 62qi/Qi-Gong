@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-100">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{ page.description }}">
+        <meta name="revisit-after" content="3 days">
+        <meta name="language" content="fr">
+        <meta name="distribution" content="global">
+        <meta name="rating" content="general">
+        <meta property="og:title" content="{{ page.title }}" />
+        <meta property="og:description" content="{{ page.description }}" />
+        <meta property="og:url" content="{{ url('page', {'slug': page.slug}) }}" />
+        <meta property="og:image" content="{{ absolute_url(asset('build/images/logonenuf.png')) }}" />
+        <meta name="twitter:title" content="{{ page.title }}">
+        <meta name="twitter:description" content="{{ page.description }}">
+        <meta name="twitter:image" content="{{ absolute_url(asset('build/images/logonenuf.png')) }}">
+        <meta name="instagram:title" content="{{ page.title }}">
+        <meta name="instagram:description" content="{{ page.description }}">
+        <meta name="instagram:image" content="{{ absolute_url(asset('build/images/logonenuf.png')) }}">
+        <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.ico') }}"/>
+        <title>
+            {% block title %}{{ page.title }}{% endblock %}
+            {% block description %}{{ page.description }}{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="h-100 d-flex flex-column"
+        {{ stimulus_controller({
+            swup: {},
+            'symfony/ux-swup/swup': {
+                containers: ['#swup', '#nav', '#footer', '#partner'],
+            }
+        }) }}>
+        {{ include('include/_navbar.html.twig') }}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} alert-dismissible fade show mb-4" role="alert">
+                    {{ message|raw }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    <main id="swup">
+        {% block body %}{% endblock %}
+    </main>
+        {{ include('include/_footer.html.twig') }}
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ page.title }}
+{% endblock %}
+{% block description %}
+	{{ page.description }}
+{% endblock %}
+{% block body %}
+    <section style="background-color:{{ page.color }}10">
+        <h1 class="text-primary text-center p-5">{{ page.titleH1 }}</h1>
+    {% for content in page.contents %}
+        <div class="container">
+            <div>
+                {{ content.body|raw }}
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+{% endblock %}

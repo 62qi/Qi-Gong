@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Liste des FAQ</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponse</th>
+                <th{% if pagination.isSorted('f.isPublished') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Publié', 'f.isPublished') }}
+                </th>
+                <th></th>
+                <th></th>   
+            </tr>
+        </thead>
+        <tbody>
+        {% for faq in pagination %}
+        {% if faq.isPublished == true %}
+            <tr class="is-read">
+                <td>{{ faq.question }}</td>
+                <td>{{ faq.answer }}</td>
+                <td>{{ faq.isPublished ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a class="btn btn-success p-2 mb-2" href="{{ path('app_admin_faq_show', {'id': faq.id}) }}">Voir</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning p-2 mb-2" href="{{ path('app_admin_faq_edit', {'id': faq.id}) }}">Modifier</a>
+                </td>
+            
+        {% else %}
+            <tr>
+                <td>{{ faq.question }}</td>
+                <td>{{ faq.answer }}</td>
+                <td>{{ faq.isPublished ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a class="btn btn-success p-2 mb-2" href="{{ path('app_admin_faq_show', {'id': faq.id}) }}">Voir</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning p-2 mb-2" href="{{ path('app_admin_faq_edit', {'id': faq.id}) }}">Modifier</a>
+                </td>
+            
+        {% endif %}
+        </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune faq en attente de publication</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_admin_faq_new') }}">Créer une FAQ</a>
+<div class="navigation">
+    {{ knp_pagination_render(pagination, null,{}, {'align': 'center'}) }}
+</div>
+{% endblock %}

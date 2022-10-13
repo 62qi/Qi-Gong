@@ -1,0 +1,9 @@
+<div class="container-fluid justify-between">
+    <div class="row">
+        <div class="col-12 text-center m-3">
+            {% for content in contents %}
+            <p class="fs-5 text-white">{{ content.body|raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

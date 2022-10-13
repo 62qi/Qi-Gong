@@ -1,0 +1,29 @@
+<div class="col-lg-2 p-3">
+<nav class="main-nav bg-light rounded mt-5">
+	<div class="nav-brand mx-auto"><img class ="mt-5" src="{{ asset('build/images/logonenuf.png') }}" width="200px" alt=""></div>
+	<a href="{{ path('admin_index') }}" class="text-center text-decoration-none">
+		<span class="fs-4">Administration</span>
+	</a>
+	<hr>
+	<a class="btn btn-success fs-5 mx-auto" href="{{ path('app_home') }}">Voir le site</a>
+	<hr>
+	<ul class="nav nav-pills flex-column">
+		<li class="nav-item">
+			<a href="{{ path('app_admin_page_index')}}" class="nav-link fs-5" aria-current="page">Pages</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('app_admin_newsletter_index')}}" class="nav-link fs-5" aria-current="page">Actualités</a>
+		</li>
+		<li>
+			<a href="{{ path('app_admin_faq_index')}}" class="nav-link fs-5">Faq</a>
+		</li>
+		<li>
+			<a href="{{ path('app_admin_message_index')}}" class="nav-link fs-5">Messages</a>
+		</li>
+		<hr>
+		<hr>
+			<a class="btn btn-danger mx-auto mb-5" href="{{ path('app_logout') }}">Déconnexion</a>
+	</ul>
+
+</nav>
+</div>

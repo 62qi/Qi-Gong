@@ -1,0 +1,79 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Messages</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th{% if pagination.isSorted('m.createdAt') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Date de réception', 'm.createdAt') }}
+                </th>
+                <th{% if pagination.isSorted('m.name') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nom', 'm.name') }}
+                </th>
+                <th{% if pagination.isSorted('m.surname') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Prénom', 'm.surname') }}
+                </th>
+                <th{% if pagination.isSorted('m.subject') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Sujet', 'm.subject') }}
+                </th>
+                <th{% if pagination.isSorted('m.content') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Message', 'm.content') }}
+                </th>
+                <th{% if pagination.isSorted('m.isRead') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Lu', 'm.isRead') }}
+                </th>
+                <th{% if pagination.isSorted('m.isFaqOk') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Faq OK', 'm.isFaqOK') }}
+                </th>
+                <th{% if pagination.isSorted('m.faq') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Faq Publiée', 'm.faq') }}
+                </th>
+            </tr>
+        </thead>
+            <tbody>
+                {% for message in pagination %}
+        {% if message.isRead == false %}
+            <tr>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.createdAt|date('d/m/Y') }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.name }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.surname }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.subject }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.content }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark fw-bold" href="{{ path('app_admin_message_show', {'id': message.id}) }}"> {{ message.isRead ? 'Oui' : 'Non' }} </a></td>
+            {% else %}
+            <tr class="bg-light">
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.createdAt|date('d/m/Y') }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.name }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.surname }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.subject }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}">{{ message.content }}</a></td>
+                <td><a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lire le message" class=" text-decoration-none text-dark" href="{{ path('app_admin_message_show', {'id': message.id}) }}"> {{ message.isRead ? 'Oui' : 'Non' }} </a></td>
+        {% endif %}
+                <td>
+                    {% if message.isFaqOK == true  %}
+                        <a class="link-warning fw-bold text-decoration-none" href="{{ path('app_admin_faq_new_from_message', {'id': message.id}) }}">Envoyer vers FAQ</a>
+                    {% else %}
+                        <p class="text-danger fw-bold">Publication non autorisé pour la FAQ</p>
+                    {% endif %}
+                </td>
+                <td>           
+                    {% if message.faq %}
+                        <p class="text-success fw-bold">Déjà Publié</p>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun message pour la FAQ</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination, null,{}, {'align': 'center'}) }}
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Toutes les actualités{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Toutes les actualités</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Url</th>
+                <th>Titre de la Page</th>
+                <th>Template</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        {% for page in pagination %}
+            <tr>
+                <td>{{ page.title }}</td>
+                <td>{{ page.description }}</td>
+                <td>{{ page.slug }}</td>
+                <td>{{ page.titleH1 }}</td>
+                <td>{{ page.template }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_admin_page_show', {'id': page.id}) }}">Voir</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_admin_page_edit', {'id': page.id}) }}">Modifier</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_admin_newsletter_send', {'id': page.id}) }}">Préparer la newsletter</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune actualité</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_admin_page_new') }}">Créer une nouvelle actualité</a>
+<div class="navigation">
+    {{ knp_pagination_render(pagination, null,{}, {'align': 'center'}) }}
+</div>
+{% endblock %}

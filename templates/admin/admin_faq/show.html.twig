@@ -1,0 +1,34 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Faq{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-5">Faq</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ faq.subject }}</td>
+            </tr>
+            <tr>
+                <th>Question</th>
+                <td>{{ faq.question }}</td>
+            </tr>
+            <tr>
+                <th>Réponse</th>
+                <td>{{ faq.answer }}</td>
+            </tr>
+            <tr>
+                <th>Publier dans la FAQ</th>
+                <td>{{ faq.isPublished ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success p-2 mb-2" href="{{ path('app_admin_faq_index') }}">Retour à la liste</a>
+
+    <a class="btn btn-warning p-2 mb-2" href="{{ path('app_admin_faq_edit', {'id': faq.id}) }}">Modifier</a>
+
+    {{ include('admin/admin_faq/_delete_form.html.twig') }}
+{% endblock %}

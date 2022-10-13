@@ -1,0 +1,15 @@
+{% for content in contents|filter(content => content.position == 1) %}
+    <div class="col-lg mt-3">
+        <h5 class="text-uppercase mb-4 text-center mb-4 text-primary">{{ content.title }}</h5>
+        <ul class="list-unstyled mb-4 text-primary text-center fw-bold">
+            {{ content.body|raw }}
+        </ul>
+    </div>
+{% endfor %}
+{% for content in contents|filter(content => content.position == 2) %}
+    <div class="col-lg mt-3">
+    <h5 class="text-uppercase mb-4 text-center mb-4 text-primary">{{ content.title }} :</h5>
+        {{ content.body|raw }}
+    </div>
+{% endfor %}
+

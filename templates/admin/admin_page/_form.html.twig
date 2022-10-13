@@ -1,0 +1,79 @@
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.slug) }}
+    {{ form_row(form.titleH1) }}
+    {{ form_row(form.template) }}
+    {{ form_row(form.type) }}
+    {{ form_row(form.color) }}
+    {{ form_row(form.LinkNameNav)}}
+    {{ form_row(form.isNavLinkOk)}}
+
+<div class="p-3 bg-danger bg-opacity-10 border border-2">
+    <h3>Contenus</h3>
+    <ul class="contents list-group mb-2"
+        data-index="{{ form.contents|length > 0 ? form.contents|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(form.contents.vars.prototype)|e('html_attr') }}">
+        {% for content in form.contents %}
+            <li class="list-group-item mb-5">
+                {{ form_widget(content) }}
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_item_link btn btn-sm btn-success" data-collection-holder-class="contents">
+        Ajouter un contenu
+    </button>
+</div>
+<button class="btn btn-warning mb-5 mt-5">{{ button_label|default('Enregistrer les modifications') }}</button>
+{{ form_end(form) }}
+<script>
+    const addFormToCollection = (e) => {
+        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+        const item = document.createElement('li');
+        item.classList.add('list-group-item')
+        item.innerHTML = collectionHolder
+            .dataset
+            .prototype
+            .replace(
+                /__name__/g,
+                collectionHolder.dataset.index
+            );
+        addTagFormDeleteLink(item);
+        collectionHolder.appendChild(item);
+        collectionHolder.dataset.index++;
+        initCKEditor();
+    };
+    const addTagFormDeleteLink = (item) => {
+        const removeFormButton = document.createElement('button');
+        removeFormButton.setAttribute('class', 'btn btn-sm btn-danger')
+        removeFormButton.innerText = 'Supprimer ce contenu';
+        item.append(removeFormButton);
+        removeFormButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // remove the li for the tag form
+            item.remove();
+        });
+    }
+
+    document
+        .querySelectorAll('.add_item_link')
+        .forEach(btn => {
+            btn.addEventListener("click", addFormToCollection)
+        });
+    document
+        .querySelectorAll('ul.contents li')
+        .forEach((content) => {
+            addTagFormDeleteLink(content)
+        })
+
+    const initCKEditor = () => {
+        const editors = document.querySelectorAll('[data-editor]');
+        editors.forEach((editor) => {
+            const instance = editor.id;
+            const scripts = document.getElementById(instance).parentElement.getElementsByTagName('script');
+            eval(scripts[0].innerHTML);
+            eval(scripts[1]);
+            eval(scripts[2].innerHTML);
+        })
+    }
+</script>

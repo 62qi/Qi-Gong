@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvelle Faq{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Créer une nouvelle FAQ</h1>
+
+    {{ include('admin/admin_faq/_form.html.twig') }}
+
+    <a class="btn btn-success p-2 mb-2 mt-2" href="{{ path('app_admin_faq_index') }}">Retour à la liste</a>
+{% endblock %}

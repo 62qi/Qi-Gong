@@ -1,0 +1,10 @@
+<section class="footer2">
+  <div class="container-fluid">
+    <div class="row">
+        {{render(controller('App\\Controller\\ContentController::getContentsByHook', {hookName: 'accueil-footer'}))}}
+      <div class="col m-3">
+				{{ render(controller('App\\Controller\\NewsLetterController::subscribeForm')) }}
+			</div>
+    </div>
+  </div>
+</section>

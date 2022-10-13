@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Bonjour Christiane !{% endblock %}
+
+{% block body %}
+<div class="container align-items-center">
+    <div class="row mb-5">
+        <div class="col-lg-6">
+            <img class="img-tall1 img-fluid mx-auto" src="{{ asset('build/images/lotus.png') }}" alt="Bien être et Qi Gong" height="500px" width="500px">
+        </div>
+        <div class="col-lg-6 align-self-center">
+            <h1 class="text-center mt-5">Bienvenue sur la page d'administration de votre site web</h1>
+        </div>
+    </div>
+    <div class="row mb-5 mt-5">
+        <h2 class="mb-5 text-center text-primary">Tutoriels des positions</h2>
+        <div class="col-lg-8">
+            <img class="img-fluid" src="{{ asset('build/images/tutohomepage.png') }}" alt="Tuto HomePage">
+        </div>
+        <div class="col-lg-4 p-3">
+            <h4 class="text-center text-primary">Accueil présentation</h4>
+            <p class="p-2 fs-5 ms-3 mt-5">Pour votre photo de présentation, il n'y a pas besoin de position, vous devez simplement renseigner qu'elle se trouve dans l'accueil-présentation pour l'emplacement sur la page, ainsi que pour la citation</p>
+            <h4 class="text-center text-primary">Accueil services</h4>
+            <p class="p-2 fs-5 ms-3 mt-5">Pour les services, veuillez leur donner la position que vous souhaitez en fonction de vos envies</p>
+            <h4 class="text-center text-primary">Accueil actus</h4>
+            <p class="p-2 fs-5 ms-3 mt-5">Les actualités sont triées par dates de créations et affichent les trois dérnières, il n'y a pas de position à renseigner.</p>
+            <h4 class="text-center text-primary">Accueil footer</h4>
+            <p class="p-2 fs-5 ms-3 mt-5">La position pour la section "Me trouver" est la numéro 1, et pour les réseaux sociaux numéro 2</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <img class="img-fluid" src="{{ asset('build/images/services.png') }}" alt="Tuto HomePage">
+        </div>
+        <div class="col-lg-4">
+            <h4 class="text-center text-primary">Pages services</h4>
+            <p class="p-2 fs-5 ms-3 mt-5">Les services s'affichent en fonction des positions définies, c'est à vous de définir la position des services qui s'afficheront du premier au dernier. Attention de ne pas mettre la même position à deux services. La position définie pour le services sear la position définie sur la page d'accueil.</p>
+        </div>
+    </div>
+</div> 
+{% endblock %}

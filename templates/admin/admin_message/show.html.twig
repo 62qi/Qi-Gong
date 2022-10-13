@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Message{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Message</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ message.name }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ message.surname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ message.email }}</td>
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ message.subject }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ message.content }}</td>
+            </tr>
+            <tr>
+                <th>Publier dans la FAQ</th>
+                <td>{{ message.isFaqOK ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Lu</th>
+                <td>{{ message.isRead ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success p-2 mb-2" href="{{ path('app_admin_message_index') }}">Retour à la liste</a>
+
+    <a class="btn btn-warning p-2 mb-2" href="{{ path('app_admin_message_edit', {'id': message.id}) }}">Modifier</a>
+
+    {{ include('admin/admin_message/_delete_form.html.twig') }}
+{% endblock %}

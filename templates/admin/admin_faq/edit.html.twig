@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification FAQ{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Modifier Faq</h1>
+
+    {{ include('admin/admin_faq/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a class="btn btn-success p-2 mb-2 mt-2" href="{{ path('app_admin_faq_index') }}">Revenir à la liste</a>
+
+    {{ include('admin/admin_faq/_delete_form.html.twig') }}
+{% endblock %}
