@@ -2,19 +2,11 @@
 	<div class="container">
 		<div class="row pt-5 align-items-center">
 			<div class="col-lg-6">
-			<img class="img-fluid rounded-circle shadow" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('size')}}" alt="{{ content.title }}">
+				<img class="img-fluid rounded-circle shadow" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('size')}}" alt="{{ content.title }}">
+				<h1 class="text-primary mt-5">{{ content.title }}</h1>
 			</div>
 			<div class="col-lg-6">
 				<img class="img-fluid mx-auto" src="{{ asset('build/images/lotus.png') }}" alt="Bien être et Qi Gong" height="500px" width="500px">
-			</div>
-		</div>
-	</div>
-	<div class="container mb-5">
-		<div class="row">
-			<div class="col-lg-6">
-				<h1 class="text-primary text-center mt-5">{{ content.title }}</h1>
-			</div>
-			<div class="col-lg-6">
 				<p class="text-primary mt-5">{{ content.body|raw }}</p>
 			</div>
 		</div>
