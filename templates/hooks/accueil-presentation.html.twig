@@ -1,8 +1,8 @@
 {% for content in contents %}
 	<div class="container">
-		<div class="row pt-5 align-items-center">
+		<div class="row pt-5 text-center">
 			<div class="col-lg-6">
-				<img class="img-fluid rounded-circle shadow" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('size')}}" alt="{{ content.title }}">
+				<img class="img-fluid rounded-circle shadow mt-5" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('size')}}" alt="{{ content.title }}">
 				<h1 class="text-primary mt-5 text-center">{{ content.title }}</h1>
 			</div>
 			<div class="col-lg-6">
