@@ -21,7 +21,11 @@ class NewsController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            1
+            1,
+            [
+                'defaultSortDirection' => 'desc',
+                'defaultSortFieldName' => 'p.id'
+            ]
         );
         $newsPage = $pageRepository->findOneBySlug('actualites');
         return $this->render('news/index.html.twig', [

@@ -1,4 +1,4 @@
-{% for content in contents|sort((a, b) => b.createdAt|date("d/m/Y h m s") <=> a.createdAt|date("d/m/Y h m s"))|slice(0, 3) %}
+{% for content in contents|sort((a, b) => b.createdAt <=> a.createdAt|slice(0, 3) %}
 <div class="card mb-3 shadow">
     <div class="row g-0">
         <div class="col-lg-4">
