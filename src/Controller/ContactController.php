@@ -26,7 +26,7 @@ class ContactController extends AbstractController
             $messageRepository->add($message, true);
 
             $email = (new TemplatedEmail())
-            ->from($this->getParameter('mailer_from'))
+            ->from($message->getEmail())
             ->to($this->getParameter('mailer_to'))
             ->subject('Contact Bien-être & Qi-Gong !')
             ->htmlTemplate('mailer/contact-email.html.twig')
