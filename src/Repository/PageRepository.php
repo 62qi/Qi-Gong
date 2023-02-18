@@ -40,12 +40,13 @@ class PageRepository extends ServiceEntityRepository
         }
     }
 
-    public function queryFindByType(string $type): Query|null
+    public function queryFindByTypeAndJoinContentsByCreatedAt(string $type): Query|null
     {
         return $this->createQueryBuilder('p')
+        ->innerJoin('p.contents', 'c')
         ->where('p.type = :type')
         ->setParameter('type', $type)
-        ->orderBy('p.id', 'DESC')
+        ->addOrderBy('c.createdAt', 'DESC')
         ->getQuery();
     }
 
