@@ -62,7 +62,7 @@ class AdminNewsLetterController extends AbstractController
             ->from($this->getParameter('mailer_from'))
             ->to($newsletter->getEmail())
             ->subject('Newsletter Bien-être & Qi-Gong !')
-            ->htmlTemplate('mailer/newsletter.html.twig')
+            ->htmlTemplate('mailer/newsLetter.html.twig')
             ->context(['contents' => $contentRepository->findBy(['page' => $id]),
                 'page' => $pageRepository->findOneBy(['id' => $id]),
                 'uuid' => Uuid::v4(),
