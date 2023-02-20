@@ -17,11 +17,12 @@ class NewsController extends AbstractController
         Request $request,
         PaginatorInterface $paginator
     ): Response {
-        $query = $pageRepository->queryFindByType('news');
+        $query = $pageRepository->queryFindByTypeAndJoinContentsByCreatedAt('news');
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            1
+            1,
+            array('wrap-queries' => true)
         );
         $newsPage = $pageRepository->findOneBySlug('actualites');
         return $this->render('news/index.html.twig', [

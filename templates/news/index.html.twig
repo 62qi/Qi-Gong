@@ -10,27 +10,27 @@
 			<div class="row">
 				<div class="col-lg">
 					{% for news in pagination %}
-					<section class="mb-5 mt-3">
-                        <h2 class="text-primary mb-1">{{ news.titleH1 }}</h2>
-                        <div class="text-muted fst-italic mb-2">
-                            Newsletter du
-                            {{ news.contents.0.createdAt|date("d/m/Y") }}
-                        </div>
-						{% for content in news.contents %}
-							<div class="mt-3">
-								<h3 class="text-primary">{{ content.title }}</h3>
-								<img class="img-fluid rounded" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('actu')}}" alt="{{ content.title }}"/>
-								<div>{{ content.body|raw }}</div>
-							</div>
+						<section class="mb-5 mt-3">
+							<h2 class="text-primary mb-1">{{ news.titleH1 }}</h2>
+							{% for content in news.contents %}
+								<div class="text-muted fst-italic mb-2">
+									Newsletter du
+									{{ content.createdAt|date("d/m/Y") }}
+								</div>
+								<div class="mt-3">
+									<h3 class="text-primary">{{ content.title }}</h3>
+									<img class="img-fluid rounded" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('actu')}}" alt="{{ content.title }}"/>
+									<div class="mt-5">{{ content.body|raw }}</div>
+								</div>
+							{% endfor %}
 						{% endfor %}
-					{% endfor %}
-                        <div class="navigation mt-5">
-                            {{ knp_pagination_render(pagination, null, {}, {
+						<div class="navigation">
+							{{ knp_pagination_render(pagination, null, {}, {
                                                 'align': 'center',
                                                 'rounded': true,
                             }) }}
-                        </div>
-                    </section>
+						</div>
+					</section>
 				</div>
 			</div>
 		</div>

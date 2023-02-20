@@ -1,9 +1,9 @@
-<h1 class="text-center text-primary">Mes Services</h1>
+<h1 class="text-center text-primary">Mes Prestations</h1>
 <div class="container mb-5 mt-5">
     <div class="row">
 {% for content in contents|sort((a,b) => a.position <=> b.position) %}
     <div class="col-lg">
-        <a class="text-decoration-none" href="{{path('page', {'_fragment': 'service' ~ content.position, 'slug': 'services'})}}">
+        <a class="text-decoration-none" href="{{path('page', {'_fragment': 'service' ~ content.position, 'slug': 'prestations'})}}">
             <p class="text-center text-primary fs-3 mb-3 mt-3">{{ content.title }}</p>
             <img class="img-services rounded-circle mx-auto d-block shadow" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('size')}}" alt="{{ content.title }}">
         </a>
