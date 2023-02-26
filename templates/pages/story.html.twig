@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ page.title }}
+{% endblock %}
+{% block description %}
+	{{ page.description }}
+{% endblock %}
+{% block body %}
+	<section style="background-color:{{ page.color }}10">
+		<div class="container">
+			<h1 class="text-primary text-center p-5">{{ page.titleH1 }}</h1>
+			{% for content in page.contents|sort((a, b) => b.createdAt|date("d/m/Y h m s") <=> a.createdAt|date("d/m/Y h m s")) %}
+				<div class="row mt-5 d-flex flex-column align-content-center">
+					<div class="col-12 col-md-6">
+                        <img class="img-fluid rounded mb-3" src="{{ ('/uploads/pictures/' ~ content.image)|imagine_filter('actu')}}" alt="{{ content.title }}"/>
+						<h2 class="text-primary mb-3">{{ content.title }}</h2>
+						<p class="text-justify mb-3">{{ content.body|raw }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}
