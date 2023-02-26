@@ -56,13 +56,14 @@ class PageType extends AbstractType
             ->add('template', ChoiceType::class, [
                 'label' => 'template',
                 'choices' => [
+                    'Classique' => 'classic',
                     'Actualités' => 'news',
                     'Accueil' => 'home',
                     'Services' => 'services',
                     'Mentions Légales' => 'legals',
+                    'Petites histoires' => 'story',
                     'FAQ' => 'questions',
                     'Biographie' => 'bio',
-                    'Classique' => 'classic',
                     'Credits' => 'credits',
                 ],
                 'help' => 'Gabarit utilisé pour le rendu de la page',
