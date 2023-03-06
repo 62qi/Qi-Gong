@@ -93,6 +93,20 @@ class PageFixtures extends Fixture
         $page->setColor('#F64D4D');
         $this->addReference('bio-page', $page);
         $manager->persist($page);
+
+        $page = new Page();
+        $page->setTitle('Petites Histoires');
+        $page->setDescription('test histoires');
+        $page->setSlug('petites-histoires');
+        $page->setLinkNameNav('Petites Histoires');
+        $page->setIsNavLinkOk(true);
+        $page->setTitleH1('Petites Histoires');
+        $page->setType('Story type');
+        $page->setTemplate('story');
+        $page->setColor('#353535');
+        $this->addReference('story-page', $page);
+        $manager->persist($page);
+
         $manager->flush();
     }
 }
